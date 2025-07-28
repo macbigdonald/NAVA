@@ -1,0 +1,10 @@
+
+🟧 Dylan's Java Tips & Tricks
+
+🟩 Pause:
+kb.useDelimiter("\n");
+kb.nextLine();
+String throwaway = kb.next();
+kb.reset();
+
+Mohamed Ch emmi
