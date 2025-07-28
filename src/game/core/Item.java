@@ -5,7 +5,7 @@ package game.core;
 
 // TODO : generation
 
-public abstract class Item
+public abstract class Item // todo
 {
     // ---------------- DATA MEMBERS ----------------
 
