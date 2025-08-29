@@ -3,49 +3,78 @@
 
 package game.core;
 
-import java.util.EnumMap;
+import java.util.*;
 
-public class Equipment
+    /**
+     * <p>Equipment class. Represents the player's {@code Item} gear slots.
+     * <p>Maintains a mapping of {@code Item} types (classes) to their equipped {@code Item} instance.
+     * <p>Provides API logic for equipping, unequipping, and querying of {@code Equipment} items.
+     */
+public final class Equipment
 {
-    // ---------------- DATA MEMBERS ----------------
+    // ------------------- FIELDS ------------------- todo
 
-    private final EnumMap<ItemType, Item> equipmentMap;
+    /**
+     * A map of {@code Item} classes to their equipped {@code Item} instances.
+     */
+    private final Map<Class<? extends Equippable>, Equippable> slots;
 
-    // ---------------- CONSTRUCTORS ----------------
+    // ---------------- CONSTRUCTORS ---------------- todo
 
+    /**
+     * Constructs a new {@code Equipment} instance with an empty slot mapping and no equipped items.
+     */
     public Equipment()
     {
-        equipmentMap = new EnumMap<>(ItemType.class);
-        equipmentMap.put(ItemType.WEAPON, null);
-        equipmentMap.put(ItemType.ARMOR, null);
+        slots = new HashMap<>();
     }
 
-    // ------------------ METHODS -------------------
+    // --------------- PUBLIC METHODS ---------------
 
-    public void add(Item item)
+    /**
+     * Equips the specified {@code Item} to its slot.
+     *
+     * @param item the specified {@code Item}
+     */
+    public void equip(Equippable item)
     {
-        ItemType type = item.getType();
-        if (type.isEquippable())
-            equipmentMap.put(type, item);
+        slots.put(item.baseType(), item);
     }
 
-    public void remove(Item item)
+    /**
+     * Unequips the {@code Item} of the specified {@code Class}.
+     *
+     * @param type the specified {@code Class}
+     */
+    public void unequip(Class<? extends Equippable> type)
     {
-        ItemType type = item.getType();
-        if (equipmentMap.get(type) == item)
-            equipmentMap.remove(type, item);
+        slots.remove(type);
     }
 
-    public boolean contains(Item item)
+    /**
+     * Returns whether {@code boolean} an item of the specified {@code Class} is equipped.
+     *
+     * @param type the specified {@code Class}
+     * @return whether {@code boolean} the item of the {@code Class} is equipped
+     */
+    public boolean isEquipped(Class<? extends Equippable> type)
     {
-        return equipmentMap.get(item.getType()) == item;
+        return slots.get(type) != null;
     }
 
-    // ------------ ACCESSORS / MUTATORS ------------ todo
+    // -------------- PRIVATE METHODS ---------------
+    // ------------ ACCESSORS / MUTATORS ------------
 
-    public Item get(ItemType type)
+    /**
+     * Returns the equipped {@code Item} of the specified {@code Class}.
+     *
+     * @param key the specified {@code Class}
+     * @param <T> the specified {@code Item}
+     * @return the equipped {@code Item} of the class, or {@code null} if none is equipped
+     */
+    public <T extends Equippable> T get(Class<T> key)
     {
-        return equipmentMap.get(type);
+        return key.cast(slots.get(key));
     }
 
     // ----------------- DEBUGGING ------------------

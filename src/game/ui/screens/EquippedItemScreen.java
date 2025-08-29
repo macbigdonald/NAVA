@@ -3,10 +3,8 @@
 
 package game.ui.screens;
 
-import game.core.GameState;
-import game.ui.MenuChoice;
-import game.ui.MenuScreen;
-import game.ui.ScreenType;
+import game.core.*;
+import game.ui.*;
 
 public class EquippedItemScreen extends MenuScreen
 {
@@ -46,8 +44,8 @@ public class EquippedItemScreen extends MenuScreen
             {
                 new MenuChoice("UNEQUIP", ScreenType.EQUIPMENT, () ->
                 {
-                    if (gameState.unequip(equippedItem))
-                        gameState.setSelectedEquippable(null);
+                    if (gameState.unequip(equippedItem.baseType()))
+                        gameState.setSelectedItem(null);
                 }),
                 new MenuChoice("(BACK)", ScreenType.EQUIPMENT)
             };

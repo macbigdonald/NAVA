@@ -3,7 +3,7 @@
 
 package game.core;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GameState
 {
@@ -11,7 +11,9 @@ public class GameState
 
     private final Player player;
     private Item selectedItem;
-    ArrayList<Item> selectedList;
+    private Equippable selectedEquippable;
+    List<? extends Item> selectedItemList;
+    List<? extends Equippable> selectedEquippableList;
 
     // ---------------- CONSTRUCTORS ----------------
 
@@ -19,7 +21,7 @@ public class GameState
     {
         player = new Player();
         selectedItem = null;
-        selectedList = null;
+        selectedItemList = null;
     }
 
 // ------------------ METHODS -------------------
@@ -44,14 +46,14 @@ public class GameState
         return player.takeFromStash(item);
     }
 
-    public boolean equip(Item item)
+    public boolean equip(Equippable equippable)
     {
-        return player.equip(item);
+        return player.equip(equippable);
     }
 
-    public boolean unequip(Item item)
+    public boolean unequip(Class<? extends Equippable> type)
     {
-        return player.unequip(item);
+        return player.unequip(type);
     }
 
     // ------------ ACCESSORS / MUTATORS ------------
@@ -76,44 +78,29 @@ public class GameState
         return player.getIntellect();
     }
 
-    public Item getEquipped(ItemType type)
+    public <T extends Equippable> T getEquipped(Class<T> type)
     {
         return player.getEquipped(type);
     }
 
-    public ArrayList<Item> getInventoryList(ItemType type)
+    public <T extends Item> List<T> getList(StorageSlot slot, Class<T> type)
     {
-        return player.getInventoryList(type);
+        return player.getList(slot, type);
     }
 
-    public Item getInventory(ItemType type, int index)
+    public Item get(StorageSlot slot, Class<? extends Item> type, int index)
     {
-        return player.getInventory(type, index);
+        return player.get(slot, type, index);
     }
 
-    public Item getStash(ItemType type, int index)
+    public int getNumberOf(StorageSlot slot, Class<? extends Item> type)
     {
-        return player.getStash(type, index);
+        return player.getNumberOf(slot, type);
     }
 
-    public int getNumberOfInventory(ItemType type)
+    public int getNumberOfItems(StorageSlot slot)
     {
-        return player.getNumberOfInventory(type);
-    }
-
-    public int getNumberOfStash(ItemType type)
-    {
-        return player.getNumberOfStash(type);
-    }
-
-    public int getNumberOfInventoryItems()
-    {
-        return player.getNumberOfInventoryItems();
-    }
-
-    public int getNumberOfStashItems()
-    {
-        return player.getNumberOfStashItems();
+        return player.getNumberOfItems(slot);
     }
 
     // todo =====================================================
@@ -123,9 +110,19 @@ public class GameState
         return selectedItem;
     }
 
-    public ArrayList<Item> getSelectedList()
+    public Equippable getSelectedEquippable()
     {
-        return selectedList;
+        return selectedEquippable;
+    }
+
+    public List<? extends Item> getSelectedItemList()
+    {
+        return selectedItemList;
+    }
+
+    public List<? extends Equippable> getSelectedEquippableList()
+    {
+        return selectedEquippableList;
     }
 
     public void setSelectedItem(Item selectedItem)
@@ -133,9 +130,19 @@ public class GameState
         this.selectedItem = selectedItem;
     }
 
-    public void setSelectedList(ItemType type)
+    public void setSelectedEquippable(Equippable selectedEquippable)
     {
-        this.selectedList = player.getInventoryList(type);
+        this.selectedEquippable = selectedEquippable;
+    }
+
+    public void setSelectedItemList(StorageSlot slot, Class<? extends Item> type)
+    {
+        this.selectedItemList = player.getList(slot, type);
+    }
+
+    public void setSelectedEquippableList(StorageSlot slot, Class<? extends Equippable> type)
+    {
+        this.selectedEquippableList = player.getList(slot, type);
     }
 
     // ----------------- DEBUGGING ------------------

@@ -3,8 +3,8 @@
 
 package game.engine;
 
+import game.core.*;
 import game.ui.*;
-import game.core.GameState;
 import java.util.Scanner;
 
 public class GameLoop

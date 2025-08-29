@@ -7,7 +7,7 @@ package game.core;
 
 public class Junk extends Item
 {
-    // ---------------- DATA MEMBERS ----------------
+    // ------------------- FIELDS -------------------
 
     private final int tier;
 
@@ -20,19 +20,12 @@ public class Junk extends Item
     }
 
     // ------------------ METHODS -------------------
-
-    @Override
-    public String toString()
-    {
-        return "TIER: " + tier;
-    }
-
     // ------------ ACCESSORS / MUTATORS ------------
 
     @Override
-    public ItemType getType()
+    public Class<? extends Item> baseType()
     {
-        return ItemType.JUNK;
+        return Junk.class;
     }
 
     // ----------------- DEBUGGING ------------------

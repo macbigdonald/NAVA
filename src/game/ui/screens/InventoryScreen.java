@@ -3,11 +3,8 @@
 
 package game.ui.screens;
 
-import game.core.ItemType;
-import game.core.GameState;
-import game.ui.MenuChoice;
-import game.ui.MenuScreen;
-import game.ui.ScreenType;
+import game.core.*;
+import game.ui.*;
 
 public class InventoryScreen extends MenuScreen
 {
@@ -18,9 +15,12 @@ public class InventoryScreen extends MenuScreen
     {
         super("INVENTORY", new MenuChoice[]
         {
-            new MenuChoice("WEAPONS", ScreenType.INVENTORY_ITEM_LIST, () -> gameState.setSelectedList(ItemType.WEAPON)),
-            new MenuChoice("ARMOR", ScreenType.INVENTORY_ITEM_LIST, () -> gameState.setSelectedList(ItemType.ARMOR)),
-            new MenuChoice("JUNK", ScreenType.INVENTORY_ITEM_LIST, () -> gameState.setSelectedList(ItemType.JUNK)),
+            new MenuChoice("WEAPONS", ScreenType.EQUIPPABLE_LIST,
+                () -> gameState.setSelectedEquippableList(StorageSlot.INVENTORY, Weapon.class)),
+            new MenuChoice("ARMOR", ScreenType.EQUIPPABLE_LIST,
+                () -> gameState.setSelectedEquippableList(StorageSlot.INVENTORY, Armor.class)),
+            new MenuChoice("JUNK", ScreenType.INVENTORY_LIST,
+                () -> gameState.setSelectedItemList(StorageSlot.INVENTORY, Junk.class)),
             new MenuChoice("(BACK)", ScreenType.HUB)
         });
     }

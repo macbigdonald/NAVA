@@ -5,9 +5,9 @@ package game.core;
 
 // TODO : generation
 
-public class Weapon extends Item
+public class Weapon extends Equippable
 {
-    // ---------------- DATA MEMBERS ----------------
+    // ------------------- FIELDS -------------------
 
     private final int damage;
 
@@ -20,19 +20,12 @@ public class Weapon extends Item
     }
 
     // ------------------ METHODS -------------------
-
-    @Override
-    public String toString()
-    {
-        return "DAMAGE: " + damage;
-    }
-
     // ------------ ACCESSORS / MUTATORS ------------
 
     @Override
-    public ItemType getType()
+    public Class<? extends Equippable> baseType()
     {
-        return ItemType.WEAPON;
+        return Weapon.class;
     }
 
     // ----------------- DEBUGGING ------------------

@@ -3,7 +3,7 @@
 
 package game.core;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Player
 {
@@ -48,14 +48,14 @@ public class Player
         return itemManager.takeFromStash(item);
     }
 
-    public boolean equip(Item item)
+    public boolean equip(Equippable equippable)
     {
-        return itemManager.equip(item);
+        return itemManager.equip(equippable);
     }
 
-    public boolean unequip(Item item)
+    public boolean unequip(Class<? extends Equippable> type)
     {
-        return itemManager.unequip(item);
+        return itemManager.unequip(type);
     }
 
     // ------------ ACCESSORS / MUTATORS ------------
@@ -80,44 +80,29 @@ public class Player
         return intellect;
     }
 
-    public Item getEquipped(ItemType type)
+    public <T extends Equippable> T getEquipped(Class<T> type)
     {
         return itemManager.getEquipped(type);
     }
 
-    public ArrayList<Item> getInventoryList(ItemType type)
+    public <T extends Item> List<T> getList(StorageSlot slot, Class<T> type)
     {
-        return itemManager.getInventoryList(type);
+        return itemManager.getList(slot, type);
     }
 
-    public Item getInventory(ItemType type, int index)
+    public Item get(StorageSlot slot, Class<? extends Item> type, int index)
     {
-        return itemManager.getInventory(type, index);
+        return itemManager.get(slot, type, index);
     }
 
-    public Item getStash(ItemType type, int index)
+    public int getNumberOf(StorageSlot slot, Class<? extends Item> type)
     {
-        return itemManager.getStash(type, index);
+        return itemManager.getNumberOf(slot, type);
     }
 
-    public int getNumberOfInventory(ItemType type)
+    public int getNumberOfItems(StorageSlot slot)
     {
-        return itemManager.getNumberOfInventory(type);
-    }
-
-    public int getNumberOfStash(ItemType type)
-    {
-        return itemManager.getNumberOfStash(type);
-    }
-
-    public int getNumberOfInventoryItems()
-    {
-        return itemManager.getNumberOfInventoryItems();
-    }
-
-    public int getNumberOfStashItems()
-    {
-        return itemManager.getNumberOfStashItems();
+        return itemManager.getNumberOfItems(slot);
     }
 
     // ----------------- DEBUGGING ------------------

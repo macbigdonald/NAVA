@@ -1,23 +1,20 @@
 
-// STASH SCREEN
+// EQUIPPABLE ITEM LIST SCREEN
 
 package game.ui.screens;
 
+import game.core.*;
 import game.ui.*;
 
-public class StashScreen extends MenuScreen
+public class EquippableItemListScreen extends MenuScreen
 {
     // ---------------- DATA MEMBERS ----------------
     // ---------------- CONSTRUCTORS ----------------
 
-    public StashScreen()
+    public EquippableItemListScreen(GameState gameState)
     {
-        super("STASH", null, new MenuChoice[]
-        {
-            new MenuChoice("DEPOSIT", ScreenType.DEPOSIT),
-            new MenuChoice("WITHDRAW", ScreenType.WITHDRAW),
-            new MenuChoice("(BACK)", ScreenType.HUB)
-        });
+        super("INVENTORY ITEMS",
+            ScreenFunctions.buildEquippableList(ScreenType.INVENTORY, ScreenType.EQUIPPABLE_ITEM, gameState));
     }
 
     // ------------------ METHODS -------------------

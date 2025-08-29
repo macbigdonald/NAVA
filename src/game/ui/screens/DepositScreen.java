@@ -3,22 +3,24 @@
 
 package game.ui.screens;
 
-import game.ui.MenuChoice;
-import game.ui.MenuScreen;
-import game.ui.ScreenType;
+import game.core.*;
+import game.ui.*;
 
 public class DepositScreen extends MenuScreen
 {
     // ---------------- DATA MEMBERS ----------------
     // ---------------- CONSTRUCTORS ----------------
 
-    public DepositScreen()
+    public DepositScreen(GameState gameState)
     {
         super("STASH (DEPOSIT)", new MenuChoice[]
         {
-            new MenuChoice("WEAPONS", ScreenType.DEPOSIT_WEAPON_LIST),
-            new MenuChoice("ARMOR", ScreenType.DEPOSIT_ARMOR_LIST),
-            new MenuChoice("JUNK", ScreenType.DEPOSIT_JUNK_LIST),
+            new MenuChoice("WEAPONS", ScreenType.DEPOSIT_LIST,
+                () -> gameState.setSelectedItemList(StorageSlot.INVENTORY, Weapon.class)),
+            new MenuChoice("ARMOR", ScreenType.DEPOSIT_LIST,
+                () -> gameState.setSelectedItemList(StorageSlot.INVENTORY, Armor.class)),
+            new MenuChoice("JUNK", ScreenType.DEPOSIT_LIST,
+                () -> gameState.setSelectedItemList(StorageSlot.INVENTORY, Junk.class)),
             new MenuChoice("(BACK)", ScreenType.STASH)
         });
     }

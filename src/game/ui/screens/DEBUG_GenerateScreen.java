@@ -1,9 +1,10 @@
 
 // DEBUG (GENERATE SCREEN)
 
-package game.ui;
+package game.ui.screens;
 
 import game.core.*;
+import game.ui.*;
 
 public class DEBUG_GenerateScreen extends MenuScreen
 {

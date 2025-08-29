@@ -4,9 +4,7 @@
 package game.ui.screens;
 
 import game.core.GameState;
-import game.ui.MenuChoice;
-import game.ui.MenuScreen;
-import game.ui.ScreenType;
+import game.ui.*;
 
 // TODO : level up
 
@@ -17,7 +15,11 @@ public class CharacterScreen extends MenuScreen
 
     public CharacterScreen(GameState gameState)
     {
-        super("CHARACTER", buildSections(gameState), buildChoices(gameState));
+        super("CHARACTER", new String[]{stats(gameState)}, new MenuChoice[]
+        {
+            // new MenuChoice("LEVEL UP", ScreenType.LEVEL), <----- todo
+            new MenuChoice("(BACK)", ScreenType.HUB)
+        });
     }
 
     // ------------------ METHODS -------------------
@@ -28,20 +30,6 @@ public class CharacterScreen extends MenuScreen
                 + "\nENDURANCE: " + gameState.getEndurance()
                 + "\nAGILITY: " + gameState.getAgility()
                 + "\nINTELLECT: " + gameState.getIntellect();
-    }
-
-    private static String[] buildSections(GameState gameState) // also pass String[] sections
-    {
-        return new String[]{stats(gameState)};
-    }
-
-    private static MenuChoice[] buildChoices(GameState gameState)
-    {
-        return new MenuChoice[]
-        {
-            // new MenuChoice("LEVEL UP", ScreenType.LEVEL), <----- todo
-            new MenuChoice("(BACK)", ScreenType.HUB)
-        };
     }
 
     // ------------ ACCESSORS / MUTATORS ------------

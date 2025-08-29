@@ -4,9 +4,7 @@
 package game.ui.screens;
 
 import game.core.*;
-import game.ui.MenuChoice;
-import game.ui.MenuScreen;
-import game.ui.ScreenType;
+import game.ui.*;
 
 public class EquipmentScreen extends MenuScreen
 {
@@ -22,8 +20,8 @@ public class EquipmentScreen extends MenuScreen
 
     private static MenuChoice[] buildChoices(GameState gameState)
     {
-        Weapon equippedWeapon = gameState.getEquipped(ItemType.WEAPON);
-        Armor equippedArmor = gameState.getEquipped(ItemType.ARMOR);
+        Weapon equippedWeapon = gameState.getEquipped(Weapon.class);
+        Armor equippedArmor = gameState.getEquipped(Armor.class);
         String weaponName = "(EMPTY)";
         String armorName = "(EMPTY)";
         if (equippedWeapon != null)
@@ -33,9 +31,9 @@ public class EquipmentScreen extends MenuScreen
         return new MenuChoice[]
         {
             new MenuChoice("WEAPON: " + weaponName, ScreenType.EQUIPPED_ITEM,
-                () -> gameState.setSelectedItem(equippedWeapon)),
+                () -> gameState.setSelectedEquippable(equippedWeapon)),
             new MenuChoice("ARMOR: " + armorName, ScreenType.EQUIPPED_ITEM,
-                () -> gameState.setSelectedItem(equippedArmor)),
+                () -> gameState.setSelectedEquippable(equippedArmor)),
             new MenuChoice("(BACK)", ScreenType.HUB)
         };
     }

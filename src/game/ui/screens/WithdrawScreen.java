@@ -3,22 +3,24 @@
 
 package game.ui.screens;
 
-import game.ui.MenuChoice;
-import game.ui.MenuScreen;
-import game.ui.ScreenType;
+import game.core.*;
+import game.ui.*;
 
 public class WithdrawScreen extends MenuScreen
 {
     // ---------------- DATA MEMBERS ----------------
     // ---------------- CONSTRUCTORS ----------------
 
-    public WithdrawScreen()
+    public WithdrawScreen(GameState gameState)
     {
         super("STASH (WITHDRAW)", new MenuChoice[]
         {
-            new MenuChoice("WEAPONS", ScreenType.WITHDRAW_WEAPON_LIST),
-            new MenuChoice("ARMOR", ScreenType.WITHDRAW_ARMOR_LIST),
-            new MenuChoice("JUNK", ScreenType.WITHDRAW_JUNK_LIST),
+            new MenuChoice("WEAPONS", ScreenType.WITHDRAW_ITEM_LIST,
+                () -> gameState.setSelectedItemList(StorageSlot.STASH, Weapon.class)),
+            new MenuChoice("ARMOR", ScreenType.WITHDRAW_ITEM_LIST,
+                () -> gameState.setSelectedItemList(StorageSlot.STASH, Armor.class)),
+            new MenuChoice("JUNK", ScreenType.WITHDRAW_ITEM_LIST,
+                () -> gameState.setSelectedItemList(StorageSlot.STASH, Junk.class)),
             new MenuChoice("(BACK)", ScreenType.STASH)
         });
     }

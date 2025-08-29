@@ -1,23 +1,19 @@
 
-// STASH SCREEN
+// WITHDRAW ITEM LIST SCREEN
 
 package game.ui.screens;
 
+import game.core.*;
 import game.ui.*;
 
-public class StashScreen extends MenuScreen
+public class WithdrawItemListScreen extends MenuScreen
 {
     // ---------------- DATA MEMBERS ----------------
     // ---------------- CONSTRUCTORS ----------------
 
-    public StashScreen()
+    public WithdrawItemListScreen(GameState gameState)
     {
-        super("STASH", null, new MenuChoice[]
-        {
-            new MenuChoice("DEPOSIT", ScreenType.DEPOSIT),
-            new MenuChoice("WITHDRAW", ScreenType.WITHDRAW),
-            new MenuChoice("(BACK)", ScreenType.HUB)
-        });
+        super("WITHDRAW ITEM", ScreenFunctions.buildItemList(ScreenType.WITHDRAW, ScreenType.WITHDRAW_ITEM, gameState));
     }
 
     // ------------------ METHODS -------------------

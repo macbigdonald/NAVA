@@ -1,7 +1,9 @@
 
 // MAIN SCREEN
 
-package game.ui;
+package game.ui.screens;
+
+import game.ui.*;
 
 public class MainScreen extends MenuScreen
 {

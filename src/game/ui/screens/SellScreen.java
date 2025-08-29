@@ -3,9 +3,7 @@
 
 package game.ui.screens;
 
-import game.ui.MenuChoice;
-import game.ui.MenuScreen;
-import game.ui.ScreenType;
+import game.ui.*;
 
 public class SellScreen extends MenuScreen
 {

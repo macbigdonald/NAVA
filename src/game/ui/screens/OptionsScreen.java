@@ -1,7 +1,9 @@
 
 // OPTIONS SCREEN
 
-package game.ui;
+package game.ui.screens;
+
+import game.ui.*;
 
 public class OptionsScreen extends MenuScreen
 {

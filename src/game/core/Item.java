@@ -5,12 +5,14 @@ package game.core;
 
 // TODO : generation
 
-public abstract class Item // todo
+/**
+ * <p>Item class. {@link #baseType()}.
+ */
+public abstract class Item
 {
-    // ---------------- DATA MEMBERS ----------------
+    // ------------------- FIELDS -------------------
 
     private static int debugId = 0;
-
     private final String name;
     private final int level;
     private final int value;
@@ -39,7 +41,7 @@ public abstract class Item // todo
 
     // ------------ ACCESSORS / MUTATORS ------------
 
-    public abstract ItemType getType();
+    public abstract Class<? extends Item> baseType();
 
     public String getName()
     {

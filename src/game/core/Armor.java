@@ -5,9 +5,9 @@ package game.core;
 
 // TODO : generation
 
-public class Armor extends Item
+public class Armor extends Equippable
 {
-    // ---------------- DATA MEMBERS ----------------
+    // ------------------- FIELDS -------------------
 
     private final int reduction;
 
@@ -20,19 +20,12 @@ public class Armor extends Item
     }
 
     // ------------------ METHODS -------------------
-
-    @Override
-    public String toString()
-    {
-        return "REDUCTION: " + reduction;
-    }
-
     // ------------ ACCESSORS / MUTATORS ------------
 
     @Override
-    public ItemType getType()
+    public Class<? extends Equippable> baseType()
     {
-        return ItemType.ARMOR;
+        return Armor.class;
     }
 
     // ----------------- DEBUGGING ------------------
